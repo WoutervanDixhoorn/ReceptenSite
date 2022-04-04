@@ -8,11 +8,7 @@ bp = Blueprint('home', __name__, url_prefix='/')
 
 @bp.route('/')
 def home():
-    if 'logged' in session:
-        if(session.get('logged') == 'true'):
-            return '<b>Logged In!</b>'
-
-    return render_template('home.html')
+    return render_template('login.html')
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():

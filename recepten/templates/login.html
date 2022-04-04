@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<section class="hero is-info is-fullheight-with-navbar">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                    <form name="loginForm" action="/login" method="POST" id="login" class="box">
+                        <div class="field">
+                            <label for="username"><b>Username: </b></label>
+                            <div class="control">
+                                <input type="text" class="input" name="username" id="Username">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="field">
+                                <label for="password"><b>password: </b></label>
+                                <div class="control">
+                                    <input type="password" class="input" name="password" id="Password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flied">
+                            <div class="control">
+                                <button class="button is-info" style="margin-top: 1em">Button</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

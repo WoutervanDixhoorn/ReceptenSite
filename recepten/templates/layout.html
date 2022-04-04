@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css">
+    <style>
+        #Temporary
+        html, body {margin: 0; height: 100%; overflow: hidden}
+    </style>
+    <title>{% block title %}{% endblock %} - Recepten</title>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">      
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                    Home
+                </a>
+                <a class="navbar-item">
+                    Recepten
+                </a>
+                <a class="navbar-item">
+                    Mijn recepten
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-info" style="margin-right: 1rem;">
+                            <strong>Registreer</strong>
+                        </a>
+                        <a class="button is-light">
+                            Log in
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">{% block content %}{% endblock %}</div>
+</body>
+</html>
