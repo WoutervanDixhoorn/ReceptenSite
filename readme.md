@@ -7,17 +7,8 @@ Flask: https://flask.palletsprojects.com/en/2.1.x/
 ## How to install the project and dependecies
 
 1. Open terminal and run following commands
-### Install virtual environment
 ```bash
-$ python3 -m venv venv
-```
-### Before you work on your project active the environment
-```shell
-$ venv\Scripts\activate.bat
-```
-###Install flask
-```bash
-$ pip install Flask
+./setup.bat
 ```
 
 ## How to run the project
