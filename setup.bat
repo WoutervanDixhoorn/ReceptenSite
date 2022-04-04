@@ -1,3 +1,4 @@
-python3 -m venv venv
-venv\Scripts\activate.bat
-pip install Flask
+@echo off
+
+CALL py -m venv venv
+start /b /wait venv\Scripts\activate

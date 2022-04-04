@@ -8,13 +8,22 @@ Flask: https://flask.palletsprojects.com/en/2.1.x/
 
 1. Open terminal and run following commands
 ```bash
-./setup.bat
+$ ./setup.bat
+```
+2. Install flask in the venv
+```shell
+>pip install flask
 ```
 
 ## How to run the project
+### Everytime when restarting the project run
+```Bash
+$ activate.bat
+```
+
 ### Run the following commands
-```bash
-$ ./start.bat
+```shell
+>start.bat
 ```
 To stop the webserver press Ctr + C.
 
