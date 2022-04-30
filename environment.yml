@@ -1,0 +1,12 @@
+name: recepten
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9.7
+  - django
+  - djangorestframework
+  - pyyaml
+  - requests
+  - django-cors-headers
