@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [        
+        {
+            "name": "Backend",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\recepten_backend\\manage.py",
+            "args": [
+                "runserver",
+            ],
+            "django": true,
+            "cwd":"${workspaceFolder}\\recepten_backend",
+            "externalConsole": true,
+            "justMyCode": true
+        },
+        {
+            "command": "npm run dev",
+            "name": "Frontend",
+            "request": "launch",
+            "cwd": "${workspaceFolder}\\recepten_frontend\\",
+            "type": "node-terminal",
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Server/Client",
+            "configurations": ["Backend", "Frontend"]
+        }
+    ]    
+}
