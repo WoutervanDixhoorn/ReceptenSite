@@ -1,8 +1,8 @@
 from dataclasses import field
 from rest_framework import serializers
-from .models import Posts
+from .models import Recepten
 
-class PostSerializer(serializers.ModelSerializer):
+class ReceptenSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Posts
+        model = Recepten
         fields = '__all__'

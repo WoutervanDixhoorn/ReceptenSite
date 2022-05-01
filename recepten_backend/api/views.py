@@ -1,17 +1,14 @@
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework import generics
-from . models import Posts
-from . serializers import PostSerializer
+from . models import Recepten
+from . serializers import ReceptenSerializer
 
-def HelloWorld():
-    return JsonResponse({"message":"HelloWorld"})
-
-class PostsView(generics.RetrieveAPIView):
-    queryset = Posts.objects.all();
+class ReceptenView(generics.RetrieveAPIView):
+    queryset = Recepten.objects.all();
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = PostSerializer(queryset, many=True)
+        serializer = ReceptenSerializer(queryset, many=True)
         return Response(serializer.data)
         
