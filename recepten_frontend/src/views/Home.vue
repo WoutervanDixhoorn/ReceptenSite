@@ -1,26 +1,25 @@
 <script>
 import { getAPI }  from '../axios-api'
+import { mapState } from 'vuex'
 
 import Recept from '../components/Recept.vue'
 
 export default {
-    data(){
-        return{
-            APIData: []
-        }
+    components: {
+        Recept,
     },
+    computed: mapState(['APIData']),
     created(){
-        getAPI.get('/recepten/')
+        getAPI.get('/recepten/', {
+            headers: { Authorization: `Bearer ${this.$store.state.accessToken}`}
+        })
         .then(response => {
-            this.APIData = response.data;
+            this.$store.state.APIData = response.data;
         })
         .catch(err => {
             console.log(err);
         });
     },
-    components: {
-        Recept,
-    }
 }
 </script>
 
