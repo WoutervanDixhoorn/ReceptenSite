@@ -18,3 +18,8 @@ $ setupBackend.bat
 ```bash
 $ setupFrontend.bat
 ```
+
+# Dev user
+
+## Username: Admin
+## Password: admin
