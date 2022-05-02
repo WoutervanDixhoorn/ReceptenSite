@@ -18,7 +18,7 @@
             "justMyCode": true
         },
         {
-            "command": "npm run dev",
+            "command": "npm run serve -- --port 5000",
             "name": "Frontend",
             "request": "launch",
             "cwd": "${workspaceFolder}\\recepten_frontend\\",
