@@ -1,12 +1,17 @@
 <template>
-  <b-container fluid>
-    <b-form-input v-model="username" placeholder="Username" type="text"></b-form-input>
-    <b-form-input v-model="password" placeholder="Password" type="password"></b-form-input>
-    <b-button @click="login">Login</b-button>
-  </b-container>
+<div>
+    <Navbar />
+    <div class="loginForm">
+        <input type="text" v-model="username" placeholder="Username">
+        <input type="password" v-model="password" placeholder="Password">
+        <input type="button" value="Login" @click="login">
+    </div>
+</div>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
+
 export default {
     data() {
         return {
@@ -22,13 +27,16 @@ export default {
                 password: this.password
             })
             .then(() => {
-                this.$router.push({ name: 'Home' })
+                this.$router.push({ name: 'ReceptenMain' })
             })
             .catch(err => {
                 console.log(err);
                 //Todo: Make form validation!
             })
         }
+    },
+    components: {
+        Navbar,
     }
 }
 </script>

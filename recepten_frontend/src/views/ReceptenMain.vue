@@ -2,14 +2,17 @@
 import { getAPI }  from '../axios-api'
 import { mapState } from 'vuex'
 
+import Navbar from '../components/Navbar.vue'
 import Recept from '../components/Recept.vue'
 
 export default {
     components: {
+        Navbar,
         Recept,
     },
     computed: mapState(['APIData']),
     created(){
+        console.log(this.$store.state.accessToken);
         getAPI.get('/recepten/', {
             headers: { Authorization: `Bearer ${this.$store.state.accessToken}`}
         })
@@ -25,7 +28,7 @@ export default {
 
 <template>
     <div>
-        <h1>Recepten</h1>
+        <Navbar />
         <div v-for="recept in APIData" :key="recept.id">
             <Recept :title=recept.title :content=recept.content />
         </div>
