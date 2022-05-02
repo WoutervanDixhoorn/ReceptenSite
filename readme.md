@@ -5,8 +5,8 @@
 # Setup
 
 ## Download en installeer de volgende dependcies
--Node: https://nodejs.dev/download
--Miniconda (Python package manager): https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html
+- Node: https://nodejs.dev/download
+- Miniconda (Python package manager): https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html
 
 ## Voer de commands uit
 ```bash
