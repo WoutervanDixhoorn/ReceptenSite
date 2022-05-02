@@ -7,8 +7,7 @@ import router from './router'
 import Equal from 'equal-vue'
 import 'equal-vue/dist/style.css'
 
-//Create the store instance
-
+//Redirect if page is login only
 router.beforeEach((to, from, next) => {
     if(to.matched.some(record => record.meta.requiresLogin)){
         if(!store.getters.loggedIn){
@@ -23,9 +22,11 @@ router.beforeEach((to, from, next) => {
 
 const app = createApp(App);
 
-app.use(router);
-app.use(Vuex);
+app.use(router); //To route
+
+app.use(Vuex); // To store
 app.use(store);
-app.use(Equal);
+
+app.use(Equal); // To UI
 
 app.mount('#app');
