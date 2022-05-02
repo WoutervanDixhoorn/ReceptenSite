@@ -5,8 +5,11 @@ channels:
   - defaults
 dependencies:
   - python=3.9.7
+  - pip
   - django
   - djangorestframework
   - pyyaml
   - requests
   - django-cors-headers
+  - pip:
+    - djangorestframework_simplejwt==4.6.0
