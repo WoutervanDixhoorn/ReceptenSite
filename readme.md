@@ -2,7 +2,10 @@
 
 ## Roadmap: https://trello.com/b/c4DrG3gv/receptensite
 
-### Deze webisite heeft een django rest api backend en een vue 3 frontend met bootstrap. Om deze repo te kunnen runnen voer je volgende stappen uit!
+### Deze webisite heeft een django rest api backend en een vue 3 frontend met Equal-Vue. Om deze repo te kunnen runnen voer je volgende stappen uit!
+
+## Equals docs
+# https://quatrochan.github.io/Equal/
 
 # Setup
 
