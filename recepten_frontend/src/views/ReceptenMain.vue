@@ -29,7 +29,7 @@ export default {
     <div>
         <Navbar />
         <div v-for="recept in APIData" :key="recept.id">
-            <Recept :title=recept.title :content=recept.content />
+            <Recept :title=recept.title :content=recept.content :ingredienten=recept.ingredienten />
         </div>
     </div>
 </template>
