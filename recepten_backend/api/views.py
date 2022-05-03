@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 
 class ReceptenView(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
-    queryset = Recepten.objects.all();
+    queryset = Recepten.objects.prefetch_related('ingredienten');
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()

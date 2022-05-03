@@ -2,6 +2,7 @@
 export default {
     props: {
         title: String,
+        ingredienten: [],
         content: String,
     },
 }
@@ -10,7 +11,9 @@ export default {
 <template>
     <div class="recept">
         <h1>{{ title }}</h1>
-        <p>{{ content }}</p>
+        <h2>Ingredienten</h2>
+        <p v-for="ingredient in ingredienten" :key="ingredient.name">{{ ingredient.name + ' - ' + ingredient.amount + ' ' + ingredient.unit }}</p>
+        <p style="white-space: pre; padding-top: 10px">{{ content }}</p>
     </div>
 </template>
 
@@ -20,5 +23,8 @@ export default {
     }
     .recept h1{
         color: cadetblue;
+    }
+    .recept p{
+        margin: 0;
     }
 </style>
