@@ -1,3 +1,4 @@
+import email
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from requests import post
@@ -7,14 +8,30 @@ from rest_framework import response
 from rest_framework.response import Response
 from rest_framework import generics, status
 from . models import Recepten
-from . serializers import ReceptenSerializer, LoginSerializer
+from . serializers import ReceptenSerializer, LoginSerializer, RegisterSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
 
 
+class RegisterView(generics.GenericAPIView):
+    authentication_classes = [] 
+    permission_classes = [] 
+
+    serializer_class = RegisterSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class LoginView(generics.GenericAPIView):
-    authentication_classes = [] #disables authentication
-    permission_classes = [] #disables permission
+    authentication_classes = []
+    permission_classes = []
 
     serializer_class = LoginSerializer
 

@@ -14,6 +14,10 @@ export default {
         logout()
         {
             this.$store.dispatch('userLogout')
+            .then(() =>{
+                if(this.$router.currentRoute.path != '/recepten')
+                this.$router.push({name: 'ReceptenMain'})
+            })
             .catch(err => {
                 console.log(err)
             })
