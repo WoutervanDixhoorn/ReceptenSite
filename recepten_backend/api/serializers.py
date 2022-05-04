@@ -3,6 +3,13 @@ from pyexpat import model
 from rest_framework import serializers
 from .models import Ingredient, Recepten, User
 
+class LoginSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(max_length=128, min_length=6, write_only=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

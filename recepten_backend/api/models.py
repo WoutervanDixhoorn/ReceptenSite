@@ -1,7 +1,10 @@
+from datetime import datetime, timedelta
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.utils import timezone
+import jwt 
 
 class UserManager(BaseUserManager):
     def _create_user(self, username, email, password, is_active, is_staff, is_superuser, **extra_fields):

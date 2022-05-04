@@ -3,16 +3,22 @@ import { getAPI } from '../../axios-api'
 export default {
 
 state: {
+    username: null,
+    email: null,
     accessToken: null,
     refreshToken: null,
 },
 
 mutations: {
-    updateStorage (state, { access, refresh }) {
+    updateStorage (state, { username, email, access, refresh }) {
+        state.username = username
+        state.email = email
         state.accessToken = access
         state.refreshToken = refresh
     },
-    destroyToken (state) {
+    destroyAccount (state) {
+        state.username = null
+        state.email = null
         state.accessToken = null
         state.refreshToken = null
     }
@@ -27,17 +33,17 @@ getters: {
 actions: {
     userLogout (context) {
         if (context.getters.loggedIn) {
-            context.commit('destroyToken')
+            context.commit('destroyAccount')
         }
     },
     userLogin (context, usercredentials) {
         return new Promise((resolve, reject) => {
-            getAPI.post('/api-token/', {
+            getAPI.post('/recepten/login', {
                 username: usercredentials.username,
                 password: usercredentials.password
             })
             .then(response => {
-              context.commit('updateStorage', { access: response.data.access, refresh: response.data.refresh }) 
+              context.commit('updateStorage', { username: response.data.username, email: response.data.email, access: response.data.access, refresh: response.data.refresh }) 
               resolve()
             })
             .catch(err => {

@@ -155,5 +155,5 @@ CORS_ALLOW_METHODS = [
 ]
 
 #Auth
-
+AUTH_PROFILE_MODULE = 'users.User'
 AUTH_USER_MODEL = 'api.User'
