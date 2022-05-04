@@ -12,9 +12,7 @@ export default {
     },
     computed: mapState(['APIData']),
     created(){
-        getAPI.get('/recepten/', {
-            headers: { Authorization: `Bearer ${this.$store.state.account.accessToken}`}
-        })
+        getAPI.get('/recepten/')
         .then(response => {
             this.$store.state.APIData = response.data;
         })

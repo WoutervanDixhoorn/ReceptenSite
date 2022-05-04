@@ -31,7 +31,6 @@ export default {
             })
             .catch(err => {
                 console.log(err);
-                //Todo: Make form validation!
             })
         }
     },

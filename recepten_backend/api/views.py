@@ -38,6 +38,9 @@ class LogoutView(generics.GenericAPIView):
 
 
 class ReceptenView(generics.RetrieveAPIView):
+    authentication_classes = []
+    permission_classes = []
+
     queryset = Recepten.objects.prefetch_related('ingredienten');
 
     def get(self, request, *args, **kwargs):
