@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
+from requests import post
 from .utils import get_tokens_for_user
 from rest_framework import permissions, serializers
 from rest_framework import response
@@ -8,7 +9,7 @@ from rest_framework import generics, status
 from . models import Recepten
 from . serializers import ReceptenSerializer, LoginSerializer
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
+from django.contrib.auth.decorators import login_required
 
 
 class LoginView(generics.GenericAPIView):
@@ -29,8 +30,14 @@ class LoginView(generics.GenericAPIView):
             return Response({'msg': 'Login Success', **auth_data}, status=status.HTTP_200_OK)
         return Response({'msg': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
+class LogoutView(generics.GenericAPIView):
+    permission_classes = [IsAuthenticated,]
+
+    def post(self, request):
+        logout(request=request)
+
+
 class ReceptenView(generics.RetrieveAPIView):
-    permission_classes = (IsAuthenticated,)
     queryset = Recepten.objects.prefetch_related('ingredienten');
 
     def get(self, request, *args, **kwargs):

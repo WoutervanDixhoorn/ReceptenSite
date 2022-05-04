@@ -34,6 +34,7 @@ actions: {
     userLogout (context) {
         if (context.getters.loggedIn) {
             context.commit('destroyAccount')
+            getAPI.post('/recepten/logout')
         }
     },
     userLogin (context, usercredentials) {
