@@ -1,7 +1,7 @@
 from dataclasses import field
 from pyexpat import model
 from rest_framework import serializers
-from .models import Ingredient, Recepten, User
+from .models import Ingredient, Profile, Recepten, User, Profile
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=128, min_length=6, write_only=True)
@@ -23,8 +23,15 @@ class LoginSerializer(serializers.ModelSerializer):
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['pk', 'username', 'first_name', 'last_name', 'birth_date', 'address', 'city', 'about_me']
+        fields = ['pk', 'username', 'email', 'birth_date',]
         read_only_fields = ['email', ]
+
+class ProfileDetailsSerializer(serializers.ModelSerializer):
+    user = UserDetailsSerializer(many=False)
+
+    class Meta:
+        model = Profile
+        fields = ['user', 'first_name', 'last_name', 'address', 'city', 'about_me',]
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:

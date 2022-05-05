@@ -31,22 +31,29 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=30, unique=True)
     email = models.CharField(max_length=250, unique=True)
-    first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=30, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateField(default=timezone.now())
     birth_date = models.DateField(blank=True, null=True)
-    address = models.CharField(max_length=300, blank=True, null=True)
-    city = models.CharField(max_length=30, blank=True, null=True)
-    about_me = models.TextField(max_length=500, blank=True, null=True)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', ]
 
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, related_name='user', on_delete=models.CASCADE)
+
+    first_name = models.CharField(max_length=30, blank=True, null=True)
+    last_name = models.CharField(max_length=30, blank=True, null=True)
+    address = models.CharField(max_length=300, blank=True, null=True)
+    city = models.CharField(max_length=30, blank=True, null=True)
+    about_me = models.TextField(max_length=500, blank=True, null=True)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
 
 class Recepten (models.Model):
     title = models.CharField(max_length=250)

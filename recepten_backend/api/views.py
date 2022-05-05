@@ -1,5 +1,5 @@
 import email
-from django.http import JsonResponse
+from django.http import Http404
 from django.contrib.auth import authenticate, login, logout
 from requests import post
 from .utils import get_tokens_for_user
@@ -7,8 +7,8 @@ from rest_framework import permissions, serializers
 from rest_framework import response
 from rest_framework.response import Response
 from rest_framework import generics, status
-from . models import Recepten
-from . serializers import ReceptenSerializer, LoginSerializer, RegisterSerializer
+from . models import Recepten, Profile
+from . serializers import ReceptenSerializer, LoginSerializer, RegisterSerializer, ProfileDetailsSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
 
@@ -53,12 +53,28 @@ class LogoutView(generics.GenericAPIView):
     def post(self, request):
         logout(request=request)
 
+class ProfileView(generics.GenericAPIView):
+    authentication_classes = []
+    permission_classes = []
+
+    queryset = Profile.objects.prefetch_related('user')
+
+    def get_profile(self, username):
+        try:
+            return Profile.objects.filter(user__username=username)
+        except Profile.DoesNotExist:
+            raise Http404
+
+    def get(self, request, username):
+        queryset = self.get_profile(username)
+        serializer = ProfileDetailsSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 class ReceptenView(generics.RetrieveAPIView):
     authentication_classes = []
     permission_classes = []
 
-    queryset = Recepten.objects.prefetch_related('ingredienten');
+    queryset = Recepten.objects.prefetch_related('ingredienten')
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
